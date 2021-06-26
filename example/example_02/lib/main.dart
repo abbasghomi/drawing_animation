@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: SvgDrawingWithCustomController("assets/circle.svg"),
+        child: SvgDrawingWithCustomController('assets/circle.svg'),
       ),
     );
   }
@@ -43,13 +43,13 @@ class SvgDrawingWithCustomController extends StatefulWidget {
 class SvgDrawingWithCustomControllerState
     extends State<SvgDrawingWithCustomController>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   bool _running = false;
 
   @override
   void initState() {
     super.initState();
-    _controller = new AnimationController(
+    _controller = AnimationController(
       duration: Duration(seconds: 5),
       vsync: this,
     );
@@ -74,7 +74,7 @@ class SvgDrawingWithCustomControllerState
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: new BoxDecoration(
+        decoration: BoxDecoration(
           color: Colors.green,
         ),
         child: GestureDetector(
@@ -82,8 +82,8 @@ class SvgDrawingWithCustomControllerState
             behavior: HitTestBehavior.translucent,
             //AnimatedDrawing with a custom controller
             child: AnimatedDrawing.svg(
-              this.widget.assetName,
-              controller: this._controller,
+              widget.assetName,
+              controller: _controller,
               lineAnimation: LineAnimation.oneByOne,
               animationCurve: Curves.linear,
             )));
